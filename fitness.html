@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="./fitnesscript.js"></script>
+    <link rel="stylesheet" href="./fitnesstyle.css">
+    <title>Fitness Tracker</title>
+
+</head>
+
+<body>
+
+    </head>
+
+    <body>
+        <h1>Fitness Tracker</h1>
+        <form>
+        <div style="float: left;">
+            <img src="./images/fit.jpg" alt="fitness" width="300" height="300">
+            <ul>
+                <label for="weight">weight</label> 
+                <input type="text" id="weight" required/>
+            </ul>
+            <ul>
+                <label for="height">height</label> 
+                <input type="text" id="height" required />
+            </ul>
+            <ul>
+                <label for="gender">gender</label> 
+                <input type="radio" name="gender" value="male"> Male<br>
+                <input type="radio" name="gender" value="female"> Female<br>
+            </ul>
+            <ul>
+              <button type="button" class="btn btn-primary btn-lg">Submit</button>
+            </ul>
+          </form>
+
+        </div>
+        <div style="float: left;">
+
+            <h1>Calories Burned Graph</h1>
+            <canvas id="calories-chart" width="600" height="400"></canvas>
+
+        </div>
+        <div style="float: right; overflow-y: auto;
+        height: 500px;">
+            <button id="calculate-btn">Calculate Summary</button>
+            <div id="summary"></div>
+            <div id="trackers">
+                <!-- Template for day trackers -->
+
+                <template id="day-template" class="hidden">
+                    <div class="day-tracker">
+                        <label for="steps">Enter Steps ({{day}}):</label>
+                        <input type="number" id="steps" min="0">
+                        <label for="calories">Enter Calories Burned ({{day}}):</label>
+                        <input type="number" id="calories" min="0">
+                    </div>
+                </template>
+            </div>
+
+        </div>
+    </body>
+
+</html>
