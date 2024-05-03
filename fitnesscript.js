@@ -18,11 +18,9 @@ function createDayTrackers() {
         trackersContainer.appendChild(clone);
     });
 }
-
 function calculateSummary() {
     const trackers = document.querySelectorAll('.day-tracker');
     let totalCalories = 0;
-
     // Iterate over each day tracker
     trackers.forEach((tracker, index) => {
         const stepsInput = tracker.querySelector('input[type="number"]');
@@ -60,9 +58,6 @@ document.addEventListener('keypress', function(event) {
 
 // Call the function to create day trackers when the page loads
 window.onload = createDayTrackers;
-
-
-
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const calories = [200, 300, 250, 400, 350, 500, 450];
 
