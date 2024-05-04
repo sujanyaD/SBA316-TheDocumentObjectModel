@@ -20,14 +20,17 @@ function createDayTrackers() {
 }
 
 // created a function to caluculate summary of weeks workout
-function calculateSummary() {
-//     let h= document.getElementById('height');
-//     let w= document.getElementById('weight');
-//     if (h.value == ""){
-//    alert(" please enter height")
-//     }if(w.value ==""){
-//         alert("please enter weight")
-//     }
+function calculateSummary()  {
+
+    let h= document.getElementById('height');
+    let w= document.getElementById('weight');
+    if (h.value == ""){
+   alert(" please enter height")
+   return;
+    }if(w.value ==""){
+        alert("please enter weight")
+        return;
+    }
     
     const trackers = document.querySelectorAll('.day-tracker');
 
@@ -95,6 +98,7 @@ const startY = canvas.height - 20;
 function drawGraph(calArray) {
     //  to Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
 
     // methods to draw  x and y axes for graph
     ctx.beginPath();
