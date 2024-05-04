@@ -3,9 +3,9 @@ function createDayTrackers() {
     const template = document.getElementById('day-template');
 
     // Array to hold day names
-    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
-    // Loop to create day trackers for each day of the week
+    // used for each to iterate through each day of the week
     days.forEach(day => {
         // Clone the template content
         const clone = template.content.cloneNode(true);

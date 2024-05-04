@@ -1,0 +1,8 @@
+1. created text boxes and labeld and forms using HTML
+2. used CSS  to write styles for my webpage like backgroud color font and display and to embed image.
+used scrip file to gegerate logic for my application
+used functions to hold my logic and reuse them
+used clone to create multiple elements of same type.
+used event handlers to invoke events like click and enter
+used methods like getelement and appendchild
+used for loop to iteration.
