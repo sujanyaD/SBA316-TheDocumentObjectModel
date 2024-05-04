@@ -10,7 +10,7 @@ function createDayTrackers() {
         // Clone the template content
         const clone = template.content.cloneNode(true);
         
-        // Update placeholder with actual day name
+        // Updated 'day-template' with actual day name
         clone.querySelector('label[for="steps"]').textContent = `Enter Steps (${day}):`;
         clone.querySelector('label[for="calories"]').textContent = `Enter Calories Burned (${day}):`;
 
