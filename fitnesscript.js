@@ -21,10 +21,13 @@ function createDayTrackers() {
 
 // created a function to caluculate summary of weeks workout
 function calculateSummary() {
-    let h= document.getElementById('height');
-    if (h.value == " " ){
-   alert(" please enter height")
-    }
+//     let h= document.getElementById('height');
+//     let w= document.getElementById('weight');
+//     if (h.value == ""){
+//    alert(" please enter height")
+//     }if(w.value ==""){
+//         alert("please enter weight")
+//     }
     
     const trackers = document.querySelectorAll('.day-tracker');
 
