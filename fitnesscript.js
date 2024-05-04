@@ -18,17 +18,26 @@ function createDayTrackers() {
         trackersContainer.appendChild(clone);
     });
 }
+
 // created a function to caluculate summary of weeks workout
 function calculateSummary() {
+    let h= document.getElementById('height');
+    if (h.value == " " ){
+   alert(" please enter height")
+    }
+    
     const trackers = document.querySelectorAll('.day-tracker');
 
     let totalCalories = 0;
+    let calArray =[];
+    
     // Iterate over each day tracker using for each
     trackers.forEach((tracker, index) => {
         const stepsInput = tracker.querySelector('input[type="number"]');
         const caloriesInput = stepsInput.nextElementSibling; 
 // since output is always string used parseint
         const steps = parseInt(stepsInput.value) || 0;
+        //crated variable to store calories 
         const calories = parseInt(caloriesInput.value) || 0;
 
         // Calculated total calories burned based on steps (0.05 is a general approximate value used to caluculate calories)
@@ -36,6 +45,7 @@ function calculateSummary() {
 
         // Added calories burned to total
         totalCalories += caloriesBurned;
+        calArray.push(caloriesBurned);
     });
 
     // To Display Sumamry of total calories
@@ -45,11 +55,13 @@ function calculateSummary() {
     // Changed button text
     const calculateButton = document.getElementById('calculate-btn');
     calculateButton.textContent = 'Recalculate Summary';
-    drawGraph();
+    drawGraph(calArray);
 }
 
 // Event listener for the "Calculate Summary" button click
 document.getElementById('calculate-btn').addEventListener('click', calculateSummary);
+
+
 
 // Event listener for pressing the "Enter" key in input fields
 document.addEventListener('keypress', function(event) {
@@ -60,8 +72,8 @@ document.addEventListener('keypress', function(event) {
 
 // Called  the function to create day trackers when the page loads uaing window.onload event
 window.onload = createDayTrackers;
-const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-const calories = [200, 300, 250, 400, 350, 500, 450];
+const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+// const calories = [200, 300, 250, 400, 350, 500, 450];
 
 //used canvas element in Html to create graph and getting canvas element  
 const canvas = document.getElementById('calories-chart');
@@ -77,7 +89,7 @@ const startX = 50;
 const startY = canvas.height - 20;
 
 // Function to draw the graph
-function drawGraph() {
+function drawGraph(calArray) {
     //  to Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -91,12 +103,12 @@ function drawGraph() {
     // loop to get bars for each day for graphical representation 
     for (let i = 0; i < days.length; i++) {
         const x = startX + (i * (barWidth + barSpacing));
-        const y = startY - (calories[i] * chartHeight / 600); 
+        const y = startY - (calArray[i] * chartHeight / 600); 
         ctx.fillStyle = 'blue';
         ctx.fillRect(x, y, barWidth, chartHeight - y); 
         ctx.fillStyle = 'black';
         // drawing bars based on each day
         ctx.fillText(days[i], x + barWidth / 2 - 15, startY + 15); 
-        ctx.fillText(calories[i].toString(), x + barWidth / 2 - 10, y - 5); 
+        ctx.fillText(calArray[i].toString(), x + barWidth / 2 - 10, y - 5); 
     }
 }
