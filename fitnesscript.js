@@ -14,33 +14,35 @@ function createDayTrackers() {
         clone.querySelector('label[for="steps"]').textContent = `Enter Steps (${day}):`;
         clone.querySelector('label[for="calories"]').textContent = `Enter Calories Burned (${day}):`;
 
-        // Append the clone to the container
+        // Append the clone to the trackers container get  weeks data
         trackersContainer.appendChild(clone);
     });
 }
+// created a function to caluculate summary of weeks workout
 function calculateSummary() {
     const trackers = document.querySelectorAll('.day-tracker');
+
     let totalCalories = 0;
-    // Iterate over each day tracker
+    // Iterate over each day tracker using for each
     trackers.forEach((tracker, index) => {
         const stepsInput = tracker.querySelector('input[type="number"]');
-        const caloriesInput = stepsInput.nextElementSibling; // Assuming steps and calories inputs are always siblings
-
+        const caloriesInput = stepsInput.nextElementSibling; 
+// since output is always string used parseint
         const steps = parseInt(stepsInput.value) || 0;
         const calories = parseInt(caloriesInput.value) || 0;
 
-        // Calculate total calories burned based on steps
+        // Calculated total calories burned based on steps (0.05 is a general approximate value used to caluculate calories)
         const caloriesBurned = steps * 0.05 + calories;
 
-        // Add calories burned to total
+        // Added calories burned to total
         totalCalories += caloriesBurned;
     });
 
-    // Display summary
+    // To Display Sumamry of total calories
     const summaryElement = document.getElementById('summary');
     summaryElement.textContent = `Total calories burned this week: ${totalCalories.toFixed(2)}`;
 
-    // Change button text
+    // Changed button text
     const calculateButton = document.getElementById('calculate-btn');
     calculateButton.textContent = 'Recalculate Summary';
     drawGraph();
@@ -56,16 +58,17 @@ document.addEventListener('keypress', function(event) {
     }
 });
 
-// Call the function to create day trackers when the page loads
+// Called  the function to create day trackers when the page loads uaing window.onload event
 window.onload = createDayTrackers;
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 const calories = [200, 300, 250, 400, 350, 500, 450];
 
-// Get canvas element and context
+//used canvas element in Html to create graph and getting canvas element  
 const canvas = document.getElementById('calories-chart');
+// using getcontext() method to draw graph on canvas element 
 const ctx = canvas.getContext('2d');
 
-// Set chart properties
+//cashing chart properties for graph
 const chartHeight = canvas.height - 50;
 const chartWidth = canvas.width - 50;
 const barWidth = 30;
@@ -75,24 +78,25 @@ const startY = canvas.height - 20;
 
 // Function to draw the graph
 function drawGraph() {
-    // Clear canvas
+    //  to Clear canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Draw x and y axes
+    // methods to draw  x and y axes for graph
     ctx.beginPath();
     ctx.moveTo(startX, startY);
     ctx.lineTo(startX, 20);
     ctx.lineTo(chartWidth, 20);
     ctx.stroke();
 
-    // Draw bars for each day
+    // loop to get bars for each day for graphical representation 
     for (let i = 0; i < days.length; i++) {
         const x = startX + (i * (barWidth + barSpacing));
-        const y = startY - (calories[i] * chartHeight / 600); // Scale calories to fit chart
+        const y = startY - (calories[i] * chartHeight / 600); 
         ctx.fillStyle = 'blue';
-        ctx.fillRect(x, y, barWidth, chartHeight - y); // Draw bar
+        ctx.fillRect(x, y, barWidth, chartHeight - y); 
         ctx.fillStyle = 'black';
-        ctx.fillText(days[i], x + barWidth / 2 - 15, startY + 15); // Draw day label
-        ctx.fillText(calories[i].toString(), x + barWidth / 2 - 10, y - 5); // Draw calorie label
+        // drawing bars based on each day
+        ctx.fillText(days[i], x + barWidth / 2 - 15, startY + 15); 
+        ctx.fillText(calories[i].toString(), x + barWidth / 2 - 10, y - 5); 
     }
 }
